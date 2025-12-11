@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hearthstone-misc-asset-extractor"
+version = "0.1.0"
+requires-python = ">=3.12"
+
+dependencies = [
+    "UnityPy>=1.24.1",
+    "nuitka>=2.8.9",
+    "pythonnet>=3.0.5"
+]
+
+
+[project.scripts]
+misc-asset = "cli:main"
+build = "build_script:build"
