@@ -1,0 +1,16 @@
+LANGUAGE_CODES = (
+    "enUS",
+    "deDE",
+    "esES",
+    "esMX",
+    "frFR",
+    "itIT",
+    "jaJP",
+    "koKR",
+    "plPL",
+    "ptBR",
+    "ruRU",
+    "thTH",
+    "zhCN",
+    "zhTW",
+)
