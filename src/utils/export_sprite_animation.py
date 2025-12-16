@@ -1,76 +1,8 @@
 import os
-import re
 from pathlib import Path
 from typing import Sequence
 
-import UnityPy
-import unicodedata
 from PIL import Image
-from UnityPy.files import SerializedFile, ObjectReader
-
-# Windows / macOS / Linux common forbidden characters
-_INVALID_CHARS = re.compile(r'[\\/:*?"<>|]+')
-_WHITESPACE = re.compile(r"\s+")
-
-# Windows reserved filenames (case-insensitive)
-_WINDOWS_RESERVED_NAMES = {
-    "CON", "PRN", "AUX", "NUL",
-    *(f"COM{i}" for i in range(1, 10)),
-    *(f"LPT{i}" for i in range(1, 10)),
-}
-
-
-def to_safe_filename(name: str, replacement: str = "_") -> str:
-    """
-    Convert a string into a filesystem-safe filename stem.
-
-    This function assumes the input string does NOT include a file extension.
-    The result is safe to use on Windows, macOS, and Linux.
-
-    Args:
-        name: Original filename stem.
-        replacement: Replacement string for invalid characters.
-
-    Returns:
-        A sanitized, filesystem-safe filename stem.
-    """
-    if not name:
-        return "unnamed"
-    
-    # Normalize unicode (e.g. full-width, accents)
-    name = unicodedata.normalize("NFKD", name)
-    
-    # Remove non-printable characters
-    name = "".join(c for c in name if c.isprintable())
-    
-    # Replace forbidden characters
-    name = _INVALID_CHARS.sub(replacement, name)
-    
-    # Collapse whitespace
-    name = _WHITESPACE.sub(replacement, name)
-    
-    # Strip leading/trailing dots, spaces, and underscores
-    name = name.strip("._ ")
-    
-    # Avoid Windows reserved names
-    if name.upper() in _WINDOWS_RESERVED_NAMES:
-        name = f"{name}_"
-    
-    return name or "unnamed"
-
-
-def get_obj(
-        env: UnityPy.Environment, base: SerializedFile, file_path_pair: dict[str, int]
-) -> tuple[SerializedFile, ObjectReader]:
-    file_id, path_id = file_path_pair['m_FileID'], file_path_pair['m_PathID']
-    if file_id == 0:
-        return base, base.objects[path_id]
-    
-    dependencies = base.objects[1].read_typetree()['m_Dependencies']
-    for name in dependencies:
-        asset = env.get_cab(name)
-        if path_id in asset.objects:
-            return asset, asset.objects[path_id]
 
 
 def export_sprite_animation(

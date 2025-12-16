@@ -41,11 +41,11 @@ def export_bg_emote(context: ExportContext):
 
 
 def is_static_sprite_clip(pairs: list[dict]):
-    if len(pairs) != 2:
-        return False
-    for key in ('m_FileID', 'm_PathID'):
-        if pairs[0][key] != pairs[1][key]:
-            return False
+    first, *rest = pairs
+    for pair in rest:
+        for key in ('m_FileID', 'm_PathID'):
+            if first[key] != pair[key]:
+                return False
     return True
 
 
