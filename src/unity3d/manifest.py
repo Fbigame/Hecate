@@ -7,7 +7,7 @@ from typing import TypedDict
 import UnityPy
 
 
-class AssetManifestReader:
+class ManifestReader:
     _instances = {}
     
     def __new__(cls, folder: os.PathLike[str] | str):

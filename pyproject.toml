@@ -16,3 +16,4 @@ dependencies = [
 [project.scripts]
 misc-asset = "cli:main"
 build = "build_script:build"
+test = 'test_sciprt:main'

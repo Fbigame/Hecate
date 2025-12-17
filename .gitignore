@@ -2,3 +2,4 @@
 *.egg-info/
 .idea/
 /output/
+/src/test_sciprt.py

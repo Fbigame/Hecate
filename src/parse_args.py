@@ -104,7 +104,8 @@ def parse_args():
     parser.add_argument(
         '--export',
         type=wrap_parse_list_arg(*(args := (
-            'bg-emote',
+            'bg-emote', 'bg-board', 'bg-finisher', 'card-back',
+            'set-watermark', 'set-filter-icon', 'league-rank'
         )), name='export', cannot_none=True),
         help=f'Contents to export: all, {", ".join(args)}',
         required=True,
