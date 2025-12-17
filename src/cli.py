@@ -39,3 +39,7 @@ def main():
                 export_league_rank(context)
             case _:
                 raise argparse.ArgumentTypeError(f'not found {export} parament in export')
+
+
+if __name__ == '__main__':
+    main()

@@ -80,8 +80,8 @@ def export_sprite_animation(
             bg.paste(img, (0, 0), img)
             pal = bg.convert("RGB").quantize(
                 colors=256,
-                method=Image.MEDIANCUT,
-                dither=Image.FLOYDSTEINBERG,
+                method=Image.Quantize.MEDIANCUT,
+                dither=Image.Dither.FLOYDSTEINBERG,
             )
             gif_frames.append(pal)
         

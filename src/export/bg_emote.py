@@ -1,6 +1,5 @@
 import logging
 
-import UnityPy
 from PIL import Image
 
 from context import ExportContext
@@ -20,7 +19,6 @@ def export_bg_emote(context: ExportContext):
         bundles.update(manifest.bundle_deps[bundle])
     
     # 把文件全部放进环境中
-    env = UnityPy.load(*((folder / bundle).as_posix() for bundle in bundles))
     for name, guid in bg_emote.items():
         try:
             name = to_safe_filename(name)
