@@ -9,6 +9,7 @@ class ExtractContext:
     output: Path
     export: tuple[str, ...]
     dynamic_image: str
+    fallback_unity_version: str
 
 
 @dataclass

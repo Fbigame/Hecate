@@ -8,12 +8,12 @@ from context import ExportContext
 from export.bg_emote import export_bg_emote
 from parse_args import parse_args
 
-UnityPy.config.FALLBACK_UNITY_VERSION = "6000.3.11f1"
 warnings.filterwarnings("ignore", category=UnityVersionFallbackWarning)
 
 
 def main():
     args = parse_args()
+    UnityPy.config.FALLBACK_UNITY_VERSION = args.fallback_unity_version
     context = ExportContext(
         input=args.input,
         output=args.output,
@@ -27,3 +27,6 @@ def main():
                 export_bg_emote(context)
             case _:
                 raise argparse.ArgumentTypeError(f'not found {export} parament in export')
+
+if __name__ == '__main__':
+    main()

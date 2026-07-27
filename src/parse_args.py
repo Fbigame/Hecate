@@ -138,6 +138,14 @@ def parse_args():
         help=f"Set the logging level (default: {default}).\n"
              "Available options: debug, info, warning, error, critical"
     )
+
+    # fallback_unity_version参数
+    parser.add_argument(
+        "--fallback-unity-version",
+        type=str,
+        default=(default := "6000.3.11f1"),
+        help=f"Set the fallback Unity version for asset parsing (default: {default})"
+    )
     
     # 如果没有传任何参数，打印帮助并退出
     if len(sys.argv) == 1:
@@ -157,5 +165,6 @@ def parse_args():
         output=output,
         export=args.export,
         dynamic_image=args.dynamic_image,
-        locale=args.locale
+        locale=args.locale,
+        fallback_unity_version=args.fallback_unity_version,
     )
