@@ -1,4 +1,12 @@
-/.venv
-*.egg-info/
-.idea/
+/.venv/
+/.idea/
+/build/
+/dist/
 /output/
+__pycache__/
+*.egg-info/
+/cli.dist/
+/cli.onefile-build/
+/cli.build/
+*.exe
+nuitka-crash-report.xml

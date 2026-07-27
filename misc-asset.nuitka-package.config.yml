@@ -1,0 +1,4 @@
+- module-name: 'UnityPy'
+  data-files:
+    - patterns:
+        - 'resources/uncompressed.tpk'
